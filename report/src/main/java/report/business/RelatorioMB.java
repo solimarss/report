@@ -29,7 +29,7 @@ public class RelatorioMB implements Serializable {
 		
 	
 	public void gerarPdfWeb() throws JRException, IOException{
-		System.out.println("Foi2");
+		System.out.println("executando método gerarPdfWeb()");
 		
 		
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -49,7 +49,7 @@ public class RelatorioMB implements Serializable {
 	
 	
 	public void salvarPdfEmDisco() throws JRException, IOException{
-		System.out.println("Foi2");
+		System.out.println("executando método salvarPdfEmDisco()");
 		
 		
 		Map<String, Object> params = new HashMap<String, Object>();
