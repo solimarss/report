@@ -2,8 +2,10 @@ package report.business;
 
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -15,16 +17,17 @@ public class RelatorioUtil{
 
 	
 
-	public <T> void geraPdf(List<T> dados, String reportFilePath, Map<String, Object> parametros, OutputStream saida) {
+	public <T> void geraPdf(List<T> dados, String reportFilePath, Map<String, Object> params, OutputStream saida) {
 
 		try {
-
+			params.put(JRParameter.REPORT_LOCALE, new Locale("pt", "BR"));
+			
 			// compila jrxml em memoria
-			//JasperReport jasper = JasperCompileManager.compileReport(jrxml);
+			//JasperReport report = JasperCompileManager.compileReport(jrxml);
 
 			JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getClassLoader().getResource(reportFilePath));
-			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(dados);
-			JasperPrint print = JasperFillManager.fillReport(report, parametros, ds);
+			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dados);
+			JasperPrint print = JasperFillManager.fillReport(report, params, dataSource);
 		
 			
 
